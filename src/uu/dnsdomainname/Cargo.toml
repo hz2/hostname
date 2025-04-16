@@ -1,0 +1,30 @@
+[package]
+name = "uu_dnsdomainname"
+version = "0.0.1"
+edition = "2024"
+authors = ["uutils developers"]
+license = "MIT"
+description = "hostname ~ (uutils) Execute a program periodically, showing output fullscreen"
+
+homepage = "https://github.com/uutils/hostname"
+repository = "https://github.com/uutils/hostname/tree/main/src/uu/dnsdomainname"
+keywords = ["acl", "uutils", "cross-platform", "cli", "utility"]
+categories = ["command-line-utilities"]
+
+[dependencies]
+uucore = { workspace = true }
+clap = { workspace = true }
+
+[target.'cfg(target_os = "windows")'.dependencies]
+windows-sys = { workspace = true }
+
+[target.'cfg(not(target_os = "windows"))'.dependencies]
+errno = { workspace = true }
+libc = { workspace = true }
+
+[lib]
+path = "src/dnsdomainname.rs"
+
+[[bin]]
+name = "dnsdomainname"
+path = "src/main.rs"

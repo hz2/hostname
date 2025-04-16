@@ -24,9 +24,10 @@ build = "build.rs"
 default = ["feat_common_core"]
 uudoc = []
 
-feat_common_core = [
-  "hostname",
-]
+feat_common_core = ["hostname", "dnsdomainname"]
+
+[workspace]
+members = ["src/dnshostname"]
 
 [workspace.dependencies]
 uucore = "0.0.30"
@@ -66,6 +67,7 @@ textwrap = { workspace = true }
 
 #
 hostname = { optional = true, version = "0.0.1", package = "uu_hostname", path = "src/uu/hostname" }
+dnsdomainname = { optional = true, version = "0.0.1", package = "uu_dnsdomainname", path = "src/uu/dnsdomainname" }
 
 [dev-dependencies]
 pretty_assertions = "1.4.0"
@@ -96,6 +98,10 @@ path = "src/bin/hostname.rs"
 name = "uudoc"
 path = "src/bin/uudoc.rs"
 required-features = ["uudoc"]
+
+[[bin]]
+name = "dnsdomainname"
+path = "src/bin/dnsdomainname.rs"
 
 # The default release profile. It contains all optimizations, without
 # sacrificing debug info. With this profile (like in the standard
